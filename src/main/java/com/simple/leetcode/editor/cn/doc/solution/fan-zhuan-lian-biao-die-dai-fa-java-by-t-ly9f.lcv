@@ -1,0 +1,26 @@
+**解题思路：**
+pre记录前一个节点，cur记录当前节点，next记录后一个节点。
+1、当cur不为null时，则提前记录好cur的后一个节点next，然后修改cur的下一个节点为pre，然后更新pre为cur，cur为next，继续循环。
+2、当cur为null时，则说明已遍历完链表，则pre为链表尾节点，直接返回即可。
+
+**代码：**
+
+* 
+
+```
+public ListNode reverseList(ListNode head) {
+    if (head == null || head.next == null) {
+        return head;
+    }
+    ListNode pre = null;
+    ListNode cur = head;
+    while (cur != null) {
+        ListNode next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return pre;
+}
+```
+

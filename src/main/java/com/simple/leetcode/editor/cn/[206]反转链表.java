@@ -55,9 +55,53 @@ package com.simple.leetcode.editor.cn;//给你单链表的头节点 head ，请�
  * }
  */
 class Solution {
-    public ListNode reverseList(ListNode head) {
+    ListNode preNode = null;
+    ListNode dumy = null;
 
-        return head;
-    };
+    // 递归的解法
+//    public ListNode reverseList(ListNode head) {
+//        if (head == null) {
+//            return head;
+//        }
+//        dumy = head;
+//
+//        ListNode currentNode = head;
+//        ListNode next = head.next;
+//
+//        // 翻转节点引用
+//        currentNode.next = preNode;
+//
+//        // preNode 始终指向需要翻转的节点位置
+//        // curNode 始终执行下一个需要翻转的节点位置
+//        // pre          cur
+//        // 1 -> null ->  2
+//        // pre                cur
+//        // 2 ->  1 ->  null -> 3
+//        preNode = currentNode;
+//        currentNode = next;
+//
+//        reverseList(currentNode);
+//        return dumy;
+//    }
+
+    // 循环迭代的的方式
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+
+        ListNode next = null;
+        while (cur != null){
+            next = cur.next;
+
+            cur.next = pre;
+
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
